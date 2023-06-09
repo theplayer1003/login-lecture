@@ -28,6 +28,7 @@ express 모듈을 이용한 서버 가동
 //module
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
 
 
 
@@ -35,6 +36,8 @@ const app = express();
 app.set("views","./src/views");
 app.set("view engine","ejs");
 app.use(express.static(`${__dirname}/src/public`));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true})); //한글, 공백 처리 해결
 
 //routing
 const home = require("./src/routes/home");
